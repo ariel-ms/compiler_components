@@ -1,3 +1,4 @@
+from classes.Lexical import Lexical
 def main():
     # file = open("file.txt", "r")
     # lineas = file.readlines()
@@ -5,7 +6,10 @@ def main():
     # print(lineas)
     # file.close()
     linea = input()
-    print(len(linea))
+    # print(len(linea))
+    l = Lexical()
+
+
   
 if __name__== "__main__":
     main()
