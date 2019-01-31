@@ -6,10 +6,7 @@ def main():
     # print(lineas)
     # file.close()
     linea = input()
-    # print(len(linea))
     l = Lexical()
 
-
-  
 if __name__== "__main__":
     main()
