@@ -2,7 +2,7 @@ from classes.Lexical import Lexical
 def main():
     # file = open("file.txt", "r")
     # lineas = file.readlines()
-    lineas = "15 5 $vala + 4 - * / $er4 $4rt "
+    lineas = ")"
     # print(lineas)
     # file.close()
     # linea = input()

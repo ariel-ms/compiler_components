@@ -25,6 +25,10 @@ class Lexical:
                     value += char
                 index += 1
             if state != self.ERROR:
+                if state == 1:
+                    state = 101
+                elif state == 3:
+                    state = 102
                 token_list.append(Token(self.type_dict.get(state), value))
             else:
                 print("LEXICAL ERROR: the string " + value + " is not a valid element in the language.")
@@ -41,7 +45,7 @@ class Lexical:
         elif char == "$":
             return 3
         elif char == "(" or char == ")":
-            return 2
+            return 4
         elif char in ["+", "-", "*", "/"]:
             return 5
         else:
