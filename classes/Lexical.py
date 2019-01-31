@@ -8,7 +8,7 @@ class Lexical:
         # columns: digit, space, letter, $, parentesis, operadores
         self.transitionMatrix = [[1, 0, self.ERROR, 2, 103, 104], \
                                 [1, 101, self.ERROR, self.ERROR, self.ERROR, self.ERROR],\
-                                [3, self.ERROR, self.ERROR, self.ERROR, self.ERROR, self.ERROR], \
+                                [self.ERROR, self.ERROR, 3, self.ERROR, self.ERROR, self.ERROR], \
                                 [3, 102, 3, self.ERROR, self.ERROR, self.ERROR]]
         self.type_dict = {101: "Number", 102: "Variable", 103: "Parenthesis", 104: "Operator"}
 
