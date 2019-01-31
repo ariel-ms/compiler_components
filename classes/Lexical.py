@@ -13,17 +13,21 @@ class Lexical:
         self.type_dict = {101: "Number", 102: "Variable", 103: "Parenthesis", 104: "Operator"}
 
     def matrixHandler(self, linea):
-        value = ""
         index = state = 0
         token_list = []
-        while index < len(linea):
+        while index < len(linea) and state != self.ERROR:
+            value = ""
+            state = 0
             while index < len(linea) and state < 100:
                 char = linea[index]
                 state = self.transitionMatrix[state][self.filter(char)]
-                if char != 0:
+                if state != 0:
                     value += char
                 index += 1
-            token_list.append(Token(self.type_dict.get(state), value))
+            if state != self.ERROR:
+                token_list.append(Token(self.type_dict.get(state), value))
+            else:
+                print("LEXICAL ERROR: the string " + value + " is not a valid element in the language.")
             value = ""
         return token_list
 
