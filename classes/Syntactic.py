@@ -16,20 +16,35 @@ class Syntactic:
 
     def recursiveDescent(self):
         valid = True
-        valid = self.match(Token("Parenthesis", "(")) #create match
+        valid = self.match(Token("Parenthesis", "("), True) #create match
         if (valid):
             valid = self.parseBody(self.tokensList)
         if (valid):
-            valid = self.match(Token("Parenthesis", ")"))
+            valid = self.match(Token("Parenthesis", ")"), True)
         return valid
 
-    def match(self, correct_token):
+    def match(self, correct_token, exact):
         actual_token = self.tokenList[0]
         actual_type, actual_value = actual_token.getElements()
-        if actual_type == correct_token.type and actual_value == correct_token.value:
+        if actual_type == correct_token.type:
+            if exact:
+                if actual_value == correct_token.value
+                    self.tokenList = self.tokenList[1:]
+                    return True
+                else:
+                    return False
             self.tokenList = self.tokenList[1:]
             return True
         return False
 
     def parseBody(self, tokenList):
+        valid = self.parseOperator()
+        valid = self.parseVarNum()
+        valid = self.parseVarNum()
+        return valid
+
+    def parseOperator(self):
+        return self.match(Token("Operator", ""), False)
+
+    def parseVarNum(self):
         return False
