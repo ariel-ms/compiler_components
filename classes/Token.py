@@ -5,4 +5,7 @@ class Token:
 
     def __str__(self):
         return (self.type + " : " + self.value)
+
+    def getElements(self):
+        return (self.type, self.value)
     

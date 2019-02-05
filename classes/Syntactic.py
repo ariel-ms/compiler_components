@@ -1,4 +1,5 @@
-from .Lexical import Token
+from .Lexical import Lexical
+from .Token import Token
 
 class Syntactic:
     def __init__(self):
@@ -14,14 +15,21 @@ class Syntactic:
             print("SYNTACTIC ERROR: The expression is not valid.\n")
 
     def recursiveDescent(self):
-        valid = true
-        valid = match("(", self.tokensList) #create match
+        valid = True
+        valid = self.match(Token("Parenthesis", "(")) #create match
         if (valid):
-            valid = parseBody(self.tokensList)
+            valid = self.parseBody(self.tokensList)
         if (valid):
-            valid = match(")", self.tokensList)
+            valid = self.match(Token("Parenthesis", ")"))
         return valid
 
-    def match ():
-        #do some shit
-        self.tokenList = self.tokenList[1:]
+    def match(self, correct_token):
+        actual_token = self.tokenList[0]
+        actual_type, actual_value = actual_token.getElements()
+        if actual_type == correct_token.type and actual_value == correct_token.value:
+            self.tokenList = self.tokenList[1:]
+            return True
+        return False
+
+    def parseBody(self, tokenList):
+        return False
