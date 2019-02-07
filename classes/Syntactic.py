@@ -28,7 +28,7 @@ class Syntactic:
         actual_type, actual_value = actual_token.getElements()
         if actual_type == correct_token.type:
             if exact:
-                if actual_value == correct_token.value
+                if actual_value == correct_token.value:
                     self.tokenList = self.tokenList[1:]
                     return True
                 else:
@@ -47,4 +47,4 @@ class Syntactic:
         return self.match(Token("Operator", ""), False)
 
     def parseVarNum(self):
-        return False
+        return (self.match(Token("Variable", ""), False) or self.match(Token("Number", ""), False))
