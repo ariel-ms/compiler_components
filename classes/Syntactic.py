@@ -39,7 +39,7 @@ class Syntactic:
 
     def parseBody(self, tokenList):
         valid = self.parseOperator()
-        valid = self.parseVarNum()
+        valid = self.parseVarNum() # meter ifs en caso de que sea falso
         valid = self.parseVarNum()
         return valid
 
@@ -47,4 +47,14 @@ class Syntactic:
         return self.match(Token("Operator", ""), False)
 
     def parseVarNum(self):
-        return (self.match(Token("Variable", ""), False) or self.match(Token("Number", ""), False))
+        actual_token = self.tokenList[0]
+        actual_value = actual_token.value
+        if actual_value == "(":
+            self.match(Token("Parenthesis", "("), True)
+            self.parseOperator()
+            self.match(Token("Parenthesis", ")"), True)
+        elif self.match(Token("Variable", ""), False):
+            return True
+        elif self.match(Token("Number", ""), False):
+            return True
+        return False
