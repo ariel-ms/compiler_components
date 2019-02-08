@@ -8,7 +8,6 @@ class Syntactic:
     def syntacticAnalysis(self, string):
         l = Lexical()
         self.tokensList = l.matrixHandler(string)
-
         if (self.recursiveDescent()):
             print("The input es a well formed expression.\n")
         else:
@@ -16,9 +15,9 @@ class Syntactic:
 
     def recursiveDescent(self):
         valid = True
-        valid = self.match(Token("Parenthesis", "("), True) #create match
+        valid = self.match(Token("Parenthesis", "("), True)
         if (valid):
-            valid = self.parseBody(self.tokensList)
+            valid = self.parseBody()
         if (valid):
             valid = self.match(Token("Parenthesis", ")"), True)
         return valid
@@ -29,18 +28,20 @@ class Syntactic:
         if actual_type == correct_token.type:
             if exact:
                 if actual_value == correct_token.value:
-                    self.tokenList = self.tokenList[1:]
+                    self.tokenList.pop(0)
                     return True
                 else:
                     return False
-            self.tokenList = self.tokenList[1:]
+            self.tokenList.pop(0)
             return True
         return False
 
-    def parseBody(self, tokenList):
+    def parseBody(self):
         valid = self.parseOperator()
-        valid = self.parseVarNum() # meter ifs en caso de que sea falso
-        valid = self.parseVarNum()
+        if valid:
+            valid = self.parseVarNum() # meter ifs en caso de que sea falso
+        if valid:
+            valid = self.parseVarNum()
         return valid
 
     def parseOperator(self):
