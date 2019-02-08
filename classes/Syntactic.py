@@ -1,14 +1,11 @@
-from .Lexical import Lexical
 from .Token import Token
 
 class Syntactic:
-    def __init__(self):
-        self.tokenList = []
+    def __init__(self, tokenList):
+        self.tokenList = tokenList
 
-    def syntacticAnalysis(self, string):
-        l = Lexical()
-        self.tokensList = l.matrixHandler(string)
-        if (self.recursiveDescent()):
+    def syntacticAnalysis(self):
+        if (self.tokenList and self.recursiveDescent()):
             print("The input es a well formed expression.\n")
         else:
             print("SYNTACTIC ERROR: The expression is not valid.\n")
@@ -39,7 +36,7 @@ class Syntactic:
     def parseBody(self):
         valid = self.parseOperator()
         if valid:
-            valid = self.parseVarNum() # meter ifs en caso de que sea falso
+            valid = self.parseVarNum()
         if valid:
             valid = self.parseVarNum()
         return valid

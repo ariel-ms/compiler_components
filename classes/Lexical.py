@@ -15,6 +15,7 @@ class Lexical:
     def matrixHandler(self, linea):
         index = state = 0
         token_list = []
+        valid = True
         while index < len(linea) and state != self.ERROR:
             value = ""
             state = 0
@@ -32,8 +33,9 @@ class Lexical:
                 token_list.append(Token(self.type_dict.get(state), value))
             else:
                 print("LEXICAL ERROR: the string " + value + " is not a valid element in the language.")
+                valid = False
             value = ""
-        return token_list
+        return token_list, valid
 
     def filter(self, char):
         if char.isdigit():
